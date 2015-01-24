@@ -14,14 +14,17 @@
             </div>
             <img class="hero" src="images/notebook.png">
             <div class="row">
-                <button id="amount-ten" value="10" class="small-button payment-button target-amount">10</button>
-                <button id="amount-twenty-five" value="25" class="small-button payment-button target-amount checked">25</button>
-                <button  id="amount-fifty" value="50" class="small-button payment-button target-amount">50</button>
-                <div class="column">
-                    <sup class="pre-amount">$</sup>
-                    <input type="number" step="0.01" min="0" max="999999.99" id="amount-custom" class="button small-button target-amount" placeholder="Custom">
-                    <p class="small-label focus-reveal text-center">Enter any dollar amount.</p>
-                </div>
+                <form class="payment-form" method="POST">
+                    <input id="payment-10" type="radio" name="payment-amount" value="10">
+                    <label for="payment-10" class="button button-small target-amount payment-button">10</label>
+                    <input id="payment-25" type="radio" name="payment-amount" value="25" checked="checked">
+                    <label for="payment-25" class="button button-small target-amount payment-button">25</label>
+                    <input id="payment-50" type="radio" name="payment-amount" value="50">
+                    <label for="payment-50" class="button button-small target-amount payment-button">50</label>
+                    <input id="payment-custom" type="radio" name="payment-amount" value="custom">
+                    <label for="payment-custom" class="button button-small payment-button">Custom</label>
+                    <input id="amount-custom" type="number" step="0.01" min="0" max="999999.99" class="button small-button target-amount" placeholder="Custom">
+                </form>
                 <div style="clear:both;"></div>
                 <button id="download" class="suggested-action" onclick="download_clicked();">Download Freya Beta</button>
                 <p class="small-label">886.0 MB (for PC or Mac)</p>

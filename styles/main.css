@@ -75,7 +75,7 @@ img {
 }
 
 
-.inline-tweet:focus, 
+.inline-tweet:focus,
 .inline-tweet:hover {
     color: #08C;
     text-decoration: none;
@@ -301,7 +301,8 @@ button:active,
 .button:active,
 button.active,
 .button.active,
-.target-amount.checked {
+.target-amount.checked,
+input:checked + .payment-button {
     background-color: rgba(0, 0, 0, 0.05);
     background-image: none;
     border-color: rgba(0, 0, 0,, 0.25);
@@ -332,12 +333,19 @@ button.suggested-action,
     padding: 8px 16px;
     vertical-align: top;
 }
+.payment-button {
+    margin: 3px;
+    padding: 8px 32px;
+}
 .payment-button::before {
     content: "$";
     font-size: smaller;
     margin-left: -3px;
     margin-right: 3px;
     vertical-align: super;
+}
+.payment-form input[type="radio"] {
+    display: none;
 }
 .pre-amount {
     color: #333;
