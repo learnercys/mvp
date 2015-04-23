@@ -12,46 +12,47 @@
                 jQl.loadjQdep('scripts/jQuery.leanModal2.js');
                 jQl.loadjQdep('scripts/homepage.js');
             </script>
+            <div id="hero">
+                <div class="row">
+                    <div id="logotype">
 
-            <div class="row">
-                <div id="logotype">
+                        <?php
+                            // Embed the SVG to fix scaling in WebKit 1.x,
+                            // while preserving CSS options for the image.
+                            include('images/logotype.svg');
+                        ?>
 
-                    <?php
-                        // Embed the SVG to fix scaling in WebKit 1.x,
-                        // while preserving CSS options for the image.
-                        include('images/logotype.svg');
-                    ?>
-
-                </div>
-                <h4>A fast and open replacement for Windows and OS X</h4>
-            </div>
-
-            <img class="hero" src="images/notebook.png">
-
-            <div class="row">
-                <div id="amounts">
-                    <?php
-                        if ( isset($_COOKIE['has_paid_freya']) && $_COOKIE['has_paid_freya'] ) {
-                            ?>
-                    <input type="hidden" id="amount-twenty-five" value="0">
-                            <?php
-                        } else {
-                            ?>
-                    <button id="amount-ten" value="10" class="small-button payment-button target-amount">10</button>
-                    <button id="amount-twenty-five" value="25" class="small-button payment-button target-amount checked">25</button>
-                    <button id="amount-fifty" value="50" class="small-button payment-button target-amount">50</button>
-                    <div class="column">
-                        <sup class="pre-amount">$</sup>
-                        <input type="number" step="0.01" min="0" max="999999.99" id="amount-custom" class="button small-button target-amount" placeholder="Custom">
-                        <p class="small-label focus-reveal text-center">Enter any dollar amount.</p>
                     </div>
-                    <div style="clear:both;"></div>
-                            <?php
-                        }
-                    ?>
+                    <h4>A fast and open replacement for Windows and OS X</h4>
                 </div>
-                <button type="submit" id="download" class="suggested-action">Download Freya</button>
-                <p class="small-label">893 MB (for PC or Mac)</p>
+
+                <img class="hero" src="images/notebook.png">
+
+                <div class="row">
+                    <div id="amounts">
+                        <?php
+                            if ( isset($_COOKIE['has_paid_freya']) && $_COOKIE['has_paid_freya'] ) {
+                                ?>
+                        <input type="hidden" id="amount-twenty-five" value="0">
+                                <?php
+                            } else {
+                                ?>
+                        <button id="amount-ten" value="10" class="small-button payment-button target-amount">10</button>
+                        <button id="amount-twenty-five" value="25" class="small-button payment-button target-amount checked">25</button>
+                        <button id="amount-fifty" value="50" class="small-button payment-button target-amount">50</button>
+                        <div class="column">
+                            <sup class="pre-amount">$</sup>
+                            <input type="number" step="0.01" min="0" max="999999.99" id="amount-custom" class="button small-button target-amount" placeholder="Custom">
+                            <p class="small-label focus-reveal text-center">Enter any dollar amount.</p>
+                        </div>
+                        <div style="clear:both;"></div>
+                                <?php
+                            }
+                        ?>
+                    </div>
+                    <button type="submit" id="download" class="suggested-action">Download Freya</button>
+                    <p class="small-label">893 MB (for PC or Mac)</p>
+                </div>
             </div>
             <div class="row">
                 <h4 id="the-press">What the press is saying about elementary OS:</h4>
