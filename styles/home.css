@@ -6,22 +6,13 @@
 #hero {
     margin-top: -64px;
     padding: 64px 0;
-    min-height: 100vh;
-    background-color: #0d6c7f;
-    background-image: url("../images/screenshots/background.jpg");
+    min-height: 101vh;
+    background-color: #eee;
+    background-image: url("../images/screenshots/laptop.jpg");
     background-size: cover;
     color: #fff;
     text-shadow: 0 1px 1px rgba(0,0,0,0.3);
 }
-
-
-@media only screen and (max-width : 850px) { 
-    
-    #hero {
-        min-height: 60vh;
-    }
-}
-
 
 #hero #logotype svg path {
     fill: #fff;
@@ -45,7 +36,6 @@ nav .nav-content > ul > li > a:visited {
     margin: 12px;
     max-width: 380px;
     margin:0 auto;
-    max-height: 100vh;
     overflow: auto;
     border-radius: 3px;
     box-shadow: inset 1px 0 0 0 rgba(255, 255, 255, 0.20),
@@ -60,7 +50,7 @@ nav .nav-content > ul > li > a:visited {
     padding: 32px 0;
     min-height: 100vh;
     background-color: #0d6c7f;
-    background-image: url("../images/screenshots/background2.jpg");
+    background-image: url("../images/screenshots/background.jpg");
     background-size: cover;
     color: #fff;
     text-shadow: 0 1px 1px rgba(0,0,0,0.3);
