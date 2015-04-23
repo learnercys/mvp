@@ -28,7 +28,7 @@
 
                 <img class="hero" src="images/notebook.png">
 
-                <div class="row">
+                <div class="row button-container">
                     <div id="amounts">
                         <?php
                             if ( isset($_COOKIE['has_paid_freya']) && $_COOKIE['has_paid_freya'] ) {

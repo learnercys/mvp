@@ -5,7 +5,7 @@
 
 #hero {
     margin-top: -64px;
-    padding-top: 64px;
+    padding: 64px 0;
     min-height: 100vh;
     background-color: #0d6c7f;
     background-image: url("../images/screenshots/background.jpg");
@@ -14,12 +14,17 @@
     text-shadow: 0 1px 1px rgba(0,0,0,0.3);
 }
 
-#hero #logotype svg path {
-    fill: #fff;
+
+@media only screen and (max-width : 850px) { 
+    
+    #hero {
+        min-height: 60vh;
+    }
 }
 
-#hero .small-button {
-    background: #fff;
+
+#hero #logotype svg path {
+    fill: #fff;
 }
 
 nav .nav-content > ul > li > a,
@@ -30,6 +35,25 @@ nav .nav-content > ul > li > a:visited {
     fill: #fff;
     opacity: 0.8;
     display: inline-block;
+}
+
+.button-container {
+    background-color: #f5f5f5;
+    color: #333;
+    text-shadow:0 1px rgba(255,255,255,0.4);
+    padding: 12px;
+    margin: 12px;
+    max-width: 380px;
+    margin:0 auto;
+    max-height: 100vh;
+    overflow: auto;
+    border-radius: 3px;
+    box-shadow: inset 1px 0 0 0 rgba(255, 255, 255, 0.20),
+                inset -1px 0 0 0 rgba(255, 255, 255, 0.20),
+                inset 0 1px 0 0 #fff,
+                0 0 0 1px rgba(0, 0, 0, 0.20),
+                0 10px 20px rgba(0, 0, 0, 0.19),
+                0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 #carousel {
