@@ -23,12 +23,7 @@
                         ?>
 
                     </div>
-                    <h4>A fast and open replacement for Windows and OS X</h4>
-                </div>
-
-                <!-- <img class="hero" src="images/notebook.png"> -->
-
-                <div class="row">
+                    <h3>A fast and open replacement for Windows and OS X</h3>
                     <div class="button-container">
                         <div id="amounts">
                             <?php
