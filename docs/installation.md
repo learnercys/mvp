@@ -45,11 +45,13 @@ Select the operating system you are currently using to view tailored installatio
 
 ***
 
-<div class="installation-instructions-slide-container" markdown="1">
+<div class="slide-container" id="installation-instructions-slide-container" markdown="1">
 
 <div id="install-on-windows" class="slide" markdown="1">
 
 ## Verify your Download {#verify-your-download}
+
+Verifying your download is an important, but optional step. We generate a checksum (or hash sum) for elementary OS images and we recommend that you verify that your download matches that checksum before trying to install. This ensures that you've received the full, complete download and that your install image is not corrupted in any way.
 
 Windows doesn't include a built-in tool to verify SHA256 Checksums, so you're going to need to download <a href="http://www.digitalvolcano.co.uk/hash.html">Hash Tool</a>.
 
@@ -99,6 +101,8 @@ In order to start the installation process, you must boot your computer from the
 
 ## Verify your Download {#verify-your-download}
 
+Verifying your download is an important, but optional step. We generate a checksum (or hash sum) for elementary OS images and we recommend that you verify that your download matches that checksum before trying to install. This ensures that you've received the full, complete download and that your install image is not corrupted in any way.
+
 #### 32-bit
 
 Running the following command in your terminal:
@@ -129,15 +133,21 @@ ca0f5933231fc2d75ef4e82c177c8150a3def9ddb78db8f24da1c6a0c6037390
 
 ## Creating an Install Drive {#creating-an-installation-medium .clear-float}
 
-![UNetbootin](images/docs/installation/unetbootin.png)
-
 Begin with a spare USB flash drive with at least 1 GB of free space.
 
-You'll also need a small application called UNetbootin. To install it in Ubuntu, just <a href="http://appnr.com/install/unetbootin">click this link</a>. In OS X you'll have to download it from <a href="http://unetbootin.sourceforge.net/" target="_blank">its website</a> and open the downloaded file to install it.
+Before creating an install drive, make sure you have all OS X updates installed. To check for available updates, open the Apple Menu and select either "Software Update&#8230;" or "App Store&#8230;" Make sure to install any OS updates in addition to ones labeled with "Firmware" and "Boot Camp".
 
-Open UNetbootin from the Dash in Ubuntu or Launchpad in OS X. It will open a window like the one below:
+You'll need a small application called "Create elementary Installer". Download the latest version from [here](https://github.com/linusbobcat/create-elementary-os-installer/releases/), uncompress it, and open the app to launch it. If your Mac cannot open it because it's from an unidentifiable developer, right (or control) click the app, and click "Open".
 
-Make sure "Diskimage" is selected, and click "&#8230;" to select the ISO that you downloaded previously. Unplug all USB memory devices apart from the one you want to use. Click "OK" and wait for the process to finish.
+Insert your spare USB drive, and in the window below, select the ISO file you've just downloaded.
+
+![Create elementary OS USB Installer](images/docs/installation/osx_select_iso.png)
+
+Next, select your USB drive to start the installer creation process.
+
+![Select USB Drive](images/docs/installation/osx_select_drive.png)
+
+If your Mac doesn't recognize the resulting drive in the boot menu, you may need to create an elementary OS Install DVD instead. To create one, insert a blank DVD, right click on the ISO file in Finder, and select "Burn elementaryos-freya-xx.xx.iso to Disc".
 
 ## Booting from the Install Drive {#booting-from-the-installation-medium .clear-float}
 
@@ -153,6 +163,8 @@ In order to start the installation process, you must boot your computer from the
 <div id="install-on-ubuntu" class="slide" markdown="1">
 
 ## Verify your Download {#verify-your-download}
+
+Verifying your download is an important, but optional step. We generate a checksum (or hash sum) for elementary OS images and we recommend that you verify that your download matches that checksum before trying to install. This ensures that you've received the full, complete download and that your install image is not corrupted in any way.
 
 #### 32-bit
 
@@ -184,13 +196,13 @@ ca0f5933231fc2d75ef4e82c177c8150a3def9ddb78db8f24da1c6a0c6037390
 
 ## Creating an Install Drive {#creating-an-installation-medium .clear-float}
 
-![UNetbootin](images/docs/installation/unetbootin.png)
-
 Begin with a spare USB flash drive with at least 1 GB of free space.
 
-You'll also need a small application called UNetbootin. To install it in Ubuntu, just <a href="http://appnr.com/install/unetbootin">click this link</a>. In OS X you'll have to download it from <a href="http://unetbootin.sourceforge.net/" target="_blank">its website</a> and open the downloaded file to install it.
+You'll also need a small application called UNetbootin. To install it, just <a href="http://appnr.com/install/unetbootin">click this link</a>.
 
-Open UNetbootin from the Dash in Ubuntu or Launchpad in OS X. It will open a window like the one below:
+Open UNetbootin from the Dash. It will open a window like the one below:
+
+![UNetbootin](images/docs/installation/unetbootin.png)
 
 Make sure "Diskimage" is selected, and click "&#8230;" to select the ISO that you downloaded previously. Unplug all USB memory devices apart from the one you want to use. Click "OK" and wait for the process to finish.
 
@@ -206,6 +218,10 @@ In order to start the installation process, you must boot your computer from the
 </div>
 
 </div>
+
+## After Installation {#after-installation .clear-float}
+
+Take this time to read the <a href="/docs/learning-the-basics">getting started</a> guide to learn about your new operating system.
 
 <!--[if lt IE 10]><script type="text/javascript" src="https://cdn.jsdelivr.net/g/classlist"></script><![endif]-->
 <script type="text/javascript" src="scripts/slider.js"></script>
