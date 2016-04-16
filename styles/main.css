@@ -1,7 +1,14 @@
-/***************************************
-* Copyright 2015 elementary LLC.       *
-* This file is part of elementaryos.io *
-***************************************/
+/*************************************
+* Copyright 2016 elementary LLC.     *
+* This file is part of elementary.io *
+*************************************/
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway-Thin.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/Raleway-Thin.woff') format('woff'), /* Pretty Modern Browsers */
+         url('../fonts/Raleway-Thin.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
 
 html,
 body {
@@ -44,6 +51,19 @@ h1 {
     margin-top: 0;
 }
 
+h1 svg {
+    display: inline;
+    height: 45px;
+    max-width: 100%;
+    position: relative;
+    top: 11px;
+    width: 310px;
+}
+
+h1 .logotype-svg {
+    fill: inherit;
+}
+
 @media (min-width: 966px) {
 
     h1 {
@@ -55,7 +75,7 @@ h1 {
 h2 {
     font-size: 32px;
     font-weight: 300;
-    margin: 0 0 28px 0;
+    margin: 0 0 16px 0;
     padding: 0;
 }
 
@@ -82,6 +102,7 @@ h5 {
 
 p {
     text-align: left;
+    line-height: 1.65;
 }
 
 p.small-label {
@@ -93,7 +114,7 @@ p.small-label {
 }
 
 q {
-    font-family: "Satisfy";
+    font-family: 'Marck Script', cursive;
     font-size: 36px;
     font-weight: 400;
     margin-bottom: 10px;
@@ -127,6 +148,11 @@ img.h1 {
     height: 27px;
     margin: 19px auto;
     opacity: 0.8;
+}
+
+img.inline {
+    display: inline-block !important;
+    vertical-align: middle;
 }
 
 .inline-tweet {
@@ -164,7 +190,7 @@ img.h1 {
     font-family: "FontAwesome";
     font-style: normal;
     font-weight: inherit;
-    margin-top: 0.2em;
+    margin-top: 0.05em;
     padding-left: 6px;
     position: absolute;
     transition: padding 0.15s ease-in-out;
@@ -218,6 +244,10 @@ nav > .nav-content > ul {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+nav > .nav-content > ul:first-child {
+    -webkit-flex: 0 0 auto;
 }
 
 html.ie9 nav > .nav-content {
@@ -368,6 +398,7 @@ footer ul li a:focus {
 .column {
     display: inline-block;
     max-width: 100%;
+        vertical-align: top;
 }
 
 .column.third {
@@ -379,18 +410,16 @@ footer ul li a:focus {
 
     .row .column.half {
         margin: 32px 32px 0;
-        vertical-align: top;
         width: calc(50% - 88px);
     }
 
     .column.third {
         margin: 32px 32px 0;
-        vertical-align: top;
         width: calc(33% - 88px);
     }
 
     .column + .column {
-        margin-left: 24px !important;
+        margin-left: 16px !important;
     }
 
 }
@@ -398,10 +427,6 @@ footer ul li a:focus {
 .column.half {
     text-align: left;
     vertical-align: middle;
-}
-
-.column.third p {
-    text-align: center;
 }
 
 .column img {
@@ -427,6 +452,23 @@ footer ul li a:focus {
     text-align: left;
 }
 
+.row.docs,
+.row.docs .slide {
+    max-width: 800px;
+}
+
+.row.docs h2,
+.row.docs h3,
+.row.docs h4 {
+    margin-bottom: 16px;
+    margin-top: 32px;
+    text-align: left;
+}
+
+.row.docs h4 {
+    font-weight: 400;
+}
+
 /*******
 * Grid *
 *******/
@@ -443,6 +485,10 @@ footer ul li a:focus {
     margin: 16px;
 }
 
+.grid .grid {
+    padding: 0;
+}
+
 @media only screen and (min-width: 640px) {
 
     .grid .half {
@@ -455,6 +501,48 @@ footer ul li a:focus {
         text-align: left;
     }
 
+    .grid .third {
+        width: calc(33.33% - 32px);
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 16px;
+    }
+
+    .grid .third:last-child {
+        margin-left: 16px;
+        margin-right: 0;
+    }
+
+    .grid .two-thirds {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(66% - 48px);
+    }
+
+    .grid *:only-child p {
+        text-align: center;
+    }
+
+}
+
+.third h3,
+.third p {
+    text-align: center;
+}
+
+.third a {
+    color: inherit;
+}
+
+.third a:hover {
+    color: #08C;
+    fill: #08C;
+}
+
+.third .fa {
+    font-size: 32px;
+    text-align: center;
+    display: block;
 }
 
 /*********
@@ -478,8 +566,7 @@ footer ul li a:focus {
 }
 
 .column.alert {
-    max-width: 600px;
-    vertical-align: top;
+    max-width: calc(100% - 70px);
 }
 
 .row.alert > .column.alert {
@@ -491,7 +578,7 @@ footer ul li a:focus {
     text-align: left;
 }
 
-.column.alert i.fa {
+.row .column.alert i.fa {
     font-size: 64px;
     margin: 8px 0 0;
 }
@@ -535,7 +622,6 @@ button,
     font-family: inherit;
     font-size: 16px;
     margin: 24px;
-    max-width: 250px;
     outline: none;
     padding: 16px 32px;
     text-align: center;
@@ -580,11 +666,11 @@ button.suggested-action,
     background: none;
     border-width: 2px;
     box-shadow: none;
-    display: block;
     font-weight: bold;
     margin-bottom: 10px;
     margin-left: 0;
     margin-top: 10px;
+    min-width: 250px;
     padding: 7px;
     text-shadow: none;
 }

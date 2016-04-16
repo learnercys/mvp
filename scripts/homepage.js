@@ -40,12 +40,15 @@ $(function () {
         console.log('Pay ' + current_amount);
         var payment_amount = $('#' + current_amount).val() * 100;
         console.log('Starting payment for ' + payment_amount);
-        if (window.ga) {
-            ga('send', 'event', 'Freya Update 1 Download (Payment)', 'Homepage', payment_amount);
-        }
         if (payment_amount < payment_minimum) {
+            if (window.ga) {
+                ga('send', 'event', release_title + ' ' + release_version + ' Download (Free)', 'Homepage', payment_amount);
+            }
             open_download_overlay();
         } else {
+            if (window.ga) {
+                ga('send', 'event', release_title + ' ' + release_version + ' Payment (Initiated)', 'Homepage', payment_amount);
+            }
             do_stripe_payment(payment_amount);
         }
     });
@@ -71,7 +74,7 @@ $(function () {
                 open_download_overlay();
             },
             name: 'elementary LLC.',
-            description: 'elementary OS download',
+            description: release_title + ' ' + release_version,
             bitcoin: true,
             alipay: 'auto',
             locale: stripe_language() || 'auto',
@@ -83,15 +86,23 @@ $(function () {
         var payment_http, $amount_ten;
 
         $amount_ten = $('#amount-ten');
+        
+        if (window.ga) {
+            ga('send', 'event', release_title + ' ' + release_version + ' Payment (Actual)', 'Homepage', amount);
+        }
 
         if ($amount_ten.val() !== 0) {
             $('#amounts').html('<input type="hidden" id="amount-ten" value="0">');
             $amount_ten.each(amountClick);
+            updateDownloadButton()
         }
         payment_http = new XMLHttpRequest();
         payment_http.open('POST','./backend/payment.php',true);
         payment_http.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-        payment_http.send('amount=' + amount + '&token=' + token.id + '&email=' + encodeURIComponent(token.email));
+        payment_http.send('description=' + encodeURIComponent(release_title + ' ' + release_version) +
+                          '&amount=' + amount +
+                          '&token=' + token.id +
+                          '&email=' + encodeURIComponent(token.email));
     }
 
     function open_download_overlay () {
@@ -139,10 +150,10 @@ $(function () {
         for (var i = 0; i < links_data.length; i++) {
             (function (data, link) {
                 $(link).click(function () {
-                    ga('send', 'event', 'Freya Update 1 Download (Architecture)', 'Homepage', data.arch);
-                    ga('send', 'event', 'Freya Update 1 Download (Method)', 'Homepage', data.method);
-                    ga('send', 'event', 'Freya Update 1 Download (OS)', 'Homepage', detect_os());
-                    ga('send', 'event', 'Freya Update 1 Download (Region)', 'Homepage', download_region);
+                    ga('send', 'event', release_title + ' ' + release_version + ' Download (Architecture)', 'Homepage', data.arch);
+                    ga('send', 'event', release_title + ' ' + release_version + ' Download (Method)', 'Homepage', data.method);
+                    ga('send', 'event', release_title + ' ' + release_version + ' Download (OS)', 'Homepage', detect_os());
+                    ga('send', 'event', release_title + ' ' + release_version + ' Download (Region)', 'Homepage', download_region);
                 });
             })(links_data[i], download_links[i]);
         }
@@ -223,6 +234,27 @@ $(function () {
             }
         }, 3000);
     });
+
+    // Change Button text on payment click
+    function updateDownloadButton () {
+        var translate_download = $('#translate-download').text();
+        var translate_purchase = $('#translate-purchase').text();
+
+        if ($('#amounts').children().length <= 1) {
+            $('#download').text(translate_download);
+        } else if (
+            $('button.payment-button').hasClass('checked') ||
+            $('#amount-custom').val() * 100 >= payment_minimum
+        ) {
+            $('#download').text(translate_purchase);
+        } else {
+            $('#download').text(translate_download);
+        }
+    }
+
+    $('#amounts').on('click', updateDownloadButton);
+    $('#amounts input').on('input', updateDownloadButton);
+    updateDownloadButton();
 
     console.log('Loaded homepage.js');
 });

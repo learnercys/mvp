@@ -12,7 +12,6 @@ $apiBaseUrl = 'https://api.launchpad.net/beta/';
 // Project name
 $targetName = 'elementary';
 // Milestone name
-// $milestoneName = 'freya-beta2';
 $milestoneName = 'loki-beta1';
 
 // Build a chart from a date
@@ -33,6 +32,11 @@ header('Content-Type: text/plain');
 
 function log_info($msg) { // Basic logger
 	echo $msg."\n";
+}
+
+if ( !is_writable('./chart.json') ) {
+	log_info('Error: File `/backend/chart.json` is not writable.');
+	exit(1);
 }
 
 $apiParams = 'ws.op=searchTasks';

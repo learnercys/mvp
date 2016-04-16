@@ -17,11 +17,6 @@ applications that they don't usually work on, because the code will be
 consistent. Finally, as Guido Van Rossum said - "Code is much more often read
 than written", so having nicely written code is crucial.
 
-## Disclaimer {#disclaimer}
-
-This guide is not finished, but has been discussed and partially approved by
-the elementary contributors. It is subject to changes in the near future.
-
 ## Whitespace {#whitespace}
 
 There is no trailing whitespace at the end of a line, whether it's empty or
@@ -82,8 +77,8 @@ Cuddled else and else if:
     } else if (a == 3) {
         b = 3;
         print ("Not so good");
-    } 
-    
+    }
+
 If you are checking the same variable more than twice, use switch/case instead of multiple else/if:
 
     switch (week_day) {
@@ -144,10 +139,10 @@ any kinds of notations.
 
 Avoid using `as` keyword when casting as it might give `null` as result, which could be easily forgotten to check.
 
-    
+
     /* OK */
     ((Gtk.Entry) widget).max_width_chars
-    
+
     /* NOT OK as this approach requires a check for null */
     (widget as Gtk.Entry).max_width_chars
 
@@ -170,7 +165,7 @@ limit is 120 characters.
 ## GPL Header {#gpl-header}
 
     /*
-    * Copyright (c) 2011-2015 APP Developers (http://launchpad.net/APP)
+    * Copyright (c) 2011-2016 APP Developers (http://launchpad.net/APP)
     *
     * This program is free software; you can redistribute it and/or
     * modify it under the terms of the GNU General Public

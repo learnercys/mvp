@@ -1,15 +1,17 @@
 <?php
     $page['title'] = 'Download elementary OS';
-    $page['image'] = 'https://elementary.io/images/notebook.png';
     $page['scripts'] = '<script src="https://checkout.stripe.com/checkout.js" data-alipay="auto" data-locale="auto"></script>';
     $page['scripts'] .= '<link rel="stylesheet" type="text/css" media="all" href="styles/home.css">';
     include __DIR__.'/_templates/sitewide.php';
     include $template['header'];
     include $template['alert'];
+    require_once __DIR__.'/backend/config.loader.php';
     require_once __DIR__.'/backend/classify.current.php';
 ?>
             <script src="scripts/slider.js"></script>
             <script>var stripe_key = '<?php include __DIR__.'/backend/payment.php'; ?>';</script>
+            <script>var release_title = '<?php echo $config['release_title']; ?>';</script>
+            <script>var release_version = '<?php echo $config['release_version']; ?>';</script>
             <script>var download_region = '<?php echo $region; ?>';</script>
             <script>
                 jQl.loadjQdep('scripts/jQuery.leanModal2.js');
@@ -22,7 +24,7 @@
                     <?php
                         // Embed the SVG to fix scaling in WebKit 1.x,
                         // while preserving CSS options for the image.
-                        include('images/logotype.svg');
+                        include('images/logotype-os.svg');
                     ?>
 
                 </div>
@@ -34,7 +36,10 @@
             <div class="row">
                 <div id="amounts">
                     <?php
-                        if ( isset($_COOKIE['has_paid_freya']) && $_COOKIE['has_paid_freya'] ) {
+                        $paidString = 'has_paid_'.$config['release_title'].'_'.$config['release_version'];
+                        $disallowed = [' ', '.'];
+                        $encoded = urlencode(str_replace($disallowed, '_', $paidString));
+                        if ( isset($_COOKIE[$encoded]) && $_COOKIE[$encoded] > 0 ) {
                             ?>
                     <input type="hidden" id="amount-ten" value="0">
                             <?php
@@ -53,8 +58,8 @@
                         }
                     ?>
                 </div>
-                <button type="submit" id="download" class="suggested-action">Download Freya</button>
-                <p class="small-label">909 MB (for PC or Mac)</p>
+                <button type="submit" id="download" class="suggested-action">Purchase elementary OS</button>
+                <p class="small-label">1.15 GB (for PC or Mac)</p>
             </div>
             <div class="row">
                 <h4 id="the-press">What the press is saying about elementary OS:</h4>
@@ -63,7 +68,7 @@
                     <a class="inline-tweet" href="http://twitter.com/home/?status=&ldquo;elementary OS is different… a beautiful and powerful operating system that will run well even on old PCs&rdquo; —@WIRED http://elementary.io" target="_blank">&ldquo;elementary OS is different… a beautiful and powerful operating system that will run well even on old PCs&rdquo;</a>
                 </div>
                 <div class="column third">
-                    <a href="http://www.maclife.com/article/columns/future_os_x_may_be_more_elementary_ios_7" target="_blank"><img class="h1" src="images/thirdparty-logos/maclife.svg" data-l10n-off alt="Mac|Life" /></a>
+                    <a href="https://web.archive.org/web/20150312112222/http://www.maclife.com/article/columns/future_os_x_may_be_more_elementary_ios_7" target="_blank"><img class="h1" src="images/thirdparty-logos/maclife.svg" data-l10n-off alt="Mac|Life" /></a>
                     <a class="inline-tweet" href="http://twitter.com/home/?status=&ldquo;a fast, low-maintenance platform that can be installed virtually anywhere&rdquo; —@MacLife http://elementary.io" target="_blank">&ldquo;a fast, low-maintenance platform that can be installed virtually anywhere&rdquo;</a>
                 </div>
                 <div class="column third">
@@ -219,21 +224,23 @@
                 </div>
                 <div class="column third">
                     <h2>Safe &amp; Secure</h2>
-                    <p>We're built on Linux: the same software powering the U.S Department of Defense, the Bank of China, and more.</p>
+                    <p>We're built on Linux: the same software powering the U.S Department of Defense, the Bank of China, and more. <a class="read-more" href="http://www.ubuntu.com/usn/trusty/">Security Notices</a></p>
                 </div>
             </div>
+            <span id="translate-download" style="display:none;" hidden>Download elementary OS</span>
+            <span id="translate-purchase" style="display:none;" hidden>Purchase elementary OS</span>
             <div id="download-modal" class="modal">
                 <i class="fa fa-close close-modal"></i>
                 <h3>Choose a Download</h3>
                 <p>We recommend 64-bit for most modern computers. For help and more info, see the <a class="read-more" href="docs/installation" target="_blank">installation guide</a></p>
                 <div class="row actions">
                     <div class="column linked">
-                        <a class="button close-modal" href="<?php echo $download_link; ?>elementaryos-stable-0.3.1-i386.20150903.iso">Freya 32-bit</a>
-                        <a class="button close-modal" title="Torrent Magnet Link" href="magnet:?xt=urn:btih:8c65701a7368f89cfa47d2369648611731e713ac&dn=elementaryos-stable-0.3.1-i386.20150903.iso&tr=https%3A%2F%2Fashrise.com%3A443%2Fphoenix%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.ccc.de%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce"><i class="fa fa-magnet"></i></a>
+                        <a class="button close-modal" href="<?php echo $download_link; ?>elementaryos-0.3.2-stable-i386.20151209.iso">Freya 32-bit</a>
+                        <a class="button close-modal" title="Torrent Magnet Link" href="magnet:?xt=urn:btih:001b104e49d517cf7a41593a73c3861b7c8e34f8&dn=elementaryos-0.3.2-stable-i386.20151209.iso&tr=https%3A%2F%2Fashrise.com%3A443%2Fphoenix%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.ccc.de%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce"><i class="fa fa-magnet"></i></a>
                     </div>
                     <div class="column linked">
-                        <a class="button suggested-action close-modal" href="<?php echo $download_link; ?>elementaryos-stable-0.3.1-amd64.20150903.iso">Freya 64-bit</a>
-                        <a class="button suggested-action close-modal" title="Torrent Magnet Link" href="magnet:?xt=urn:btih:6caedf3752209f3532ff0343b9c1416c9f65f3a9&dn=elementaryos-stable-0.3.1-amd64.20150903.iso&tr=https%3A%2F%2Fashrise.com%3A443%2Fphoenix%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.ccc.de%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce"><i class="fa fa-magnet"></i></a>
+                        <a class="button suggested-action close-modal" href="<?php echo $download_link; ?>elementaryos-0.3.2-stable-amd64.20151209.iso">Freya 64-bit</a>
+                        <a class="button suggested-action close-modal" title="Torrent Magnet Link" href="magnet:?xt=urn:btih:fce720af722a813a184c5550a924aaa60a8d9af1&dn=elementaryos-0.3.2-stable-amd64.20151209.iso&tr=https%3A%2F%2Fashrise.com%3A443%2Fphoenix%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.ccc.de%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce"><i class="fa fa-magnet"></i></a>
                     </div>
                 </div>
             </div>
