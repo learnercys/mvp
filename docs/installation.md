@@ -37,9 +37,9 @@ Select the operating system you are currently using to view tailored installatio
 
 <div class="operating-system-choices-container text-center">
 <div id="operating-system-choices" class="column linked">
-<a class="button install-on-windows" href="#install-on-windows">Windows</a>
-<a class="button install-on-os-x" href="#install-on-os-x">OS X</a>
-<a class="button install-on-ubuntu" href="#install-on-ubuntu">Ubuntu</a>
+<a class="button install-on-windows" href="#install-on-windows"><i class="fa fa-windows"></i> Windows</a>
+<a class="button install-on-os-x" href="#install-on-os-x"><i class="fa fa-apple"></i> OS X</a>
+<a class="button install-on-ubuntu" href="#install-on-ubuntu"><i class="fa fa-linux"></i> Ubuntu</a>
 </div>
 </div>
 
@@ -55,7 +55,7 @@ Verifying your download is an important, but optional step. We generate a checks
 
 Windows doesn't include a built-in tool to verify SHA256 Checksums, so you're going to need to download <a href="http://www.digitalvolcano.co.uk/hash.html">Hash Tool</a>.
 
-![Hash Tool](images/docs/installation/hashtool.png)
+![Hash Tool](images/docs/installation/hash-tool.png)
 
 1. Open Hash Tool
 2. Under "Hash Type" select `SHA-256`
@@ -109,7 +109,7 @@ Verifying your download is an important, but optional step. We generate a checks
 Running the following command in your terminal:
 
 ```bash nohighlight
-shasum -a 256 elementaryos-0.3.2-stable-i386.20151209.iso
+shasum -a 256 ~/Downloads/elementaryos-0.3.2-stable-i386.20151209.iso
 ```
 
 should produce the output:
@@ -123,13 +123,20 @@ should produce the output:
 Running the following command in your terminal:
 
 ```bash nohighlight
-shasum -a 256 elementaryos-0.3.2-stable-amd64.20151209.iso
+shasum -a 256 ~/Downloads/elementaryos-0.3.2-stable-amd64.20151209.iso
 ```
 
 should produce the output:
 
 ```bash nohighlight
 ee737ffa6bf33b742c5a7cee17aa26dec5ee3b573cbbc4b53cbe2a2513c9197a
+```
+
+Note: This is assuming that you have downloaded the .iso file to your Downloads folder.
+In case you have downloaded it elsewhere, please specify the correct path to the downloaded file, as shown below
+
+```bash nohighlight
+shasum -a 256 <Path to the Downloaded Folder>/elementaryos-0.3.2-stable-amd64.20151209.iso
 ```
 
 ## Creating an Install Drive {#creating-an-installation-medium .clear-float}
